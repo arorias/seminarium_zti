@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>First React Application</title>
+      <!-- Załadowanie Reacta przy pomocy CDN. -->
+      <!-- Można zamienić wersje deweloperskie "development.js" na produkcyjne "production.min.js". -->
+      <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+      <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+      <!-- Dodanie babela, działa na potrzeby deweloperskie jednak nie polecane na dłuższą mete. -->
+      <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+   </head>
+   <body>
+      <div id="react_root"></div>
+      <!-- Załadowanie logiki aplikacji wraz z pierwszym komponentem. -->
+      <script type="text/babel" >
+         class HelloWorld extends React.Component {
+            constructor(props) {
+               super(props);
+               this.state = {
+                  btnClicked: false
+               };
+            }
+         
+            render() {
+               if (this.state.btnClicked) {
+                  return ( <h1> Hello world! </h1>);
+               }
+         
+               return (
+               <button onClick={() => this.setState({ btnClicked: true })}>
+                  Click me!
+               </button>
+               );
+            }
+         }
+         
+         const domContainer = document.querySelector('#react_root');
+         ReactDOM.render(React.createElement(HelloWorld), domContainer);
+      </script>
+   </body>
+</html>
